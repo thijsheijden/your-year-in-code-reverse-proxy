@@ -23,18 +23,21 @@ func main() {
 	log.Debug().Msg("Starting reverse proxy")
 
 	// Load Github client secret from environment variables
-	githubClientSecret := os.Getenv("GITHUB_CLIENT_SECRET")
+	githubClientSecret = os.Getenv("GITHUB_CLIENT_SECRET")
 	if githubClientSecret == "" {
 		log.Error().Msg("GITHUB_CLIENT_SECRET is not set")
 		os.Exit(1)
 	}
 
 	// Load Github client ID from environment variables
-	githubClientID := os.Getenv("GITHUB_CLIENT_ID")
+	githubClientID = os.Getenv("GITHUB_CLIENT_ID")
 	if githubClientID == "" {
 		log.Error().Msg("GITHUB_CLIENT_ID is not set")
 		os.Exit(1)
 	}
+
+	log.Debug().Str("GITHUB_CLIENT_ID", githubClientID).Msg("loaded GITHUB_CLIENT_ID")
+	log.Debug().Str("GITHUB_CLIENT_SECRET", githubClientSecret).Msg("loaded GITHUB_CLIENT_SECRET")
 
 	// Create router
 	r := chi.NewRouter()
